@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./index.css";
 
 function App() {
+  const [char, setChar] = useState("");
+
+  const text = document.querySelector("#textContent");
+
+  const captial = () => {
+    text.style.textTransform = "capitalize";
+  };
+  const none = () => {
+    text.style.textTransform = "none";
+  };
+  const uper = () => {
+    text.style.textTransform = "uppercase";
+  };
+  const lower = () => {
+    text.style.textTransform = "lowercase";
+  };
+  function handleOnChange(e) {
+    setChar(e.target.value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div id="container">
+        <div id="textEditor">
+          <textarea
+            value={char}
+            id="textContent"
+            onChange={handleOnChange}
+          ></textarea>
+          <div id="buttons">
+            <button className="btn" onClick={none}>Default</button>
+            <button className="btn" onClick={captial}>Capitalize</button>
+            <button className="btn" onClick={uper}>Uppercase</button>
+            <button className="btn" onClick={lower}>Lowercase</button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
